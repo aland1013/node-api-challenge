@@ -96,4 +96,25 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+/* ----- UPDATE /api/actions/:id ----- */
+router.put('/:id', (req, res) => {
+  const changes = req.body;
+
+  Actions.update(req.params.id, changes)
+    .then((action) => {
+      if (action) {
+        res.status(200).json(action);
+      } else {
+        res.status(404).json({
+          message: 'The action could not be found'
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: 'Error updating the action'
+      });
+    });
+});
+
 module.exports = router;
