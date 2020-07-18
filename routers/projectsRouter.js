@@ -51,6 +51,7 @@ router.get('/:id/actions', (req, res) => {
 /* ----- POST /api/projects ----- */
 router.post('/', (req, res) => {
   const newProject = req.body;
+
   if (!newProject.name || !newProject.description) {
     res.status(404).json({
       message: 'Please include a project name and description'
